@@ -1,0 +1,11 @@
+def short_cuts(g, p, k):
+    enlaces=g.get_edgelist()
+    nodos=np.arange(g.vcount())
+    for i in range(len(enlaces)):
+        if random.random()<p[k]:
+            u=random.choice(nodos)
+            v=random.choice(nodos)
+            while u==v or g.are_connected(u,v):
+                v=random.choice(nodos)
+            g.add_edges((u,v))
+            g.delete_edges(g.get_eid(*enlaces[i]))
